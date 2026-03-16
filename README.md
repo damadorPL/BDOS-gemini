@@ -4,12 +4,12 @@ Zestaw dodatkowych skilli do projektu BDOS AI.
 
 Repo zawiera obecnie:
 
-- `my/skills/gemini-setup/SKILL.md` - przygotowuje konfiguracje Gemini CLI dla BDOS
-- `my/skills/codex-setup/SKILL.md` - przygotowuje konfiguracje Codexa dla BDOS
+- `my/skills/gemini-setup/SKILL.md` - przygotowuje konfigurację Gemini CLI dla BDOS
+- `my/skills/codex-setup/SKILL.md` - przygotowuje konfigurację Codexa dla BDOS
 
-Te skille nie sa samodzielna aplikacja. To gotowe pliki `SKILL.md`, ktore kopiujesz do swojego projektu BDOS AI.
+Te skille nie są samodzielną aplikacją. To gotowe pliki `SKILL.md`, które kopiujesz do swojego projektu BDOS AI.
 
-## Zawartosc repo
+## Zawartość repo
 
 ```text
 my/
@@ -20,52 +20,65 @@ my/
       SKILL.md
 ```
 
-## Co robi kazdy skill
+## Co robi każdy skill
 
 ### `gemini-setup`
 
 Skill dla Gemini CLI. Jego celem jest:
 
-- wygenerowanie lub odswiezenie `GEMINI.md`
-- utworzenie i synchronizacja `.gemini/skills/`
-- przygotowanie `my/GEMINI.md` na prywatne instrukcje uzytkownika
+- wygenerowanie lub odświeżenie `GEMINI.md` (odpowiednik `CLAUDE.md` dla Gemini)
+- utworzenie i synchronizacja `.gemini/skills/` (natywne skille Gemini)
+- przygotowanie `my/GEMINI.md` na prywatne instrukcje użytkownika
 
-Uzywaj go, gdy chcesz, zeby Gemini CLI widzial skille BDOS natywnie przez `/skills`.
+Używaj go, gdy chcesz, żeby Gemini CLI widział skille BDOS natywnie przez `/skills`.
+
+Po uruchomieniu:
+
+- skille z `bdos/data/claude/skills/` oraz `my/skills/` są synchronizowane do `.gemini/skills/<name>/SKILL.md`
+- Gemini CLI wykrywa te skille natywnie, co pozwala na ich automatyczną aktywację na podstawie opisu (intent matching)
+- `GEMINI.md` staje się głównym plikiem instrukcji, a Twoje prywatne preferencje są ładowane z `my/GEMINI.md`
+
+Uruchom `gemini-setup` ponownie, gdy:
+
+- dodasz nowy skill do `my/skills/`
+- zaktualizujesz BDOS i zmienia się `bdos/data/claude/skills/`
+- zmienisz `my/GEMINI.md`
+- chcesz odświeżyć `GEMINI.md` po zmianach w `CLAUDE.md`
 
 ### `codex-setup`
 
 Skill dla Codexa. Jego celem jest:
 
-- skopiowanie lub odswiezenie skilli BDOS w `.agents/skills/`
-- wygenerowanie lub odswiezenie `AGENTS.md`
+- skopiowanie lub odświeżenie skilli BDOS w `.agents/skills/`
+- wygenerowanie lub odświeżenie `AGENTS.md`
 - utworzenie `my/AGENTS.md`
 
-Uzywaj go, gdy chcesz skonfigurowac projekt BDOS pod Codexa.
+Używaj go, gdy chcesz skonfigurować projekt BDOS pod Codexa.
 
 Po uruchomieniu:
 
-- skille z `bdos/data/claude/skills/` oraz `my/skills/` sa synchronizowane do `.agents/skills/<name>/SKILL.md`
-- Codex moze wykrywac te skille natywnie z katalogu projektu, analogicznie do `.gemini/skills/`
-- `AGENTS.md` pozostaje plikiem instrukcji projektowych, ale nie musi juz zawierac recznie utrzymywanej listy skilli
+- skille z `bdos/data/claude/skills/` oraz `my/skills/` są synchronizowane do `.agents/skills/<name>/SKILL.md`
+- Codex może wykrywać te skille natywnie z katalogu projektu, analogicznie do `.gemini/skills/`
+- `AGENTS.md` pozostaje plikiem instrukcji projektowych, ale nie musi już zawierać ręcznie utrzymywanej listy skilli
 
 Uruchom `codex-setup` ponownie, gdy:
 
 - dodasz nowy skill do `my/skills/`
-- zaktualizujesz BDOS i zmienia sie `bdos/data/claude/skills/`
+- zaktualizujesz BDOS i zmienia się `bdos/data/claude/skills/`
 - zmienisz `my/AGENTS.md`
-- chcesz odswiezyc `AGENTS.md` po zmianach w `CLAUDE.md`
+- chcesz odświeżyć `AGENTS.md` po zmianach w `CLAUDE.md`
 
 ## Instalacja
 
 ### Wymagania
 
-Potrzebujesz dzialajacej kopii projektu BDOS AI. Odwiedz https://bdos.ai/ aby nabyc kopie.
+Potrzebujesz działającej kopii projektu BDOS AI. Odwiedź https://bdos.ai/ aby nabyć kopię.
 
-### Opcja 1 - recznie skopiuj skille
+### Opcja 1 - ręcznie skopiuj skille
 
 Skopiuj folder `my/skills/` z tego repo do katalogu `my/skills/` w swoim projekcie BDOS.
 
-Przyklad na Windows PowerShell:
+Przykład na Windows PowerShell:
 
 ```powershell
 Copy-Item -Recurse -Force `
@@ -73,13 +86,13 @@ Copy-Item -Recurse -Force `
   "C:\sciezka\do\BDOS-AI\my\skills\"
 ```
 
-Przyklad na macOS lub Linux:
+Przykład na macOS lub Linux:
 
 ```bash
 cp -R /sciezka/do/BDOS-skills/my/skills/* /sciezka/do/BDOS-AI/my/skills/
 ```
 
-Po skopiowaniu przejdz do repo BDOS AI i odswiez konfiguracje:
+Po skopiowaniu przejdź do repo BDOS AI i odśwież konfigurację:
 
 ```bash
 bdos update --regenerate
@@ -87,15 +100,15 @@ bdos update --regenerate
 
 ### Opcja 2 - sklonuj to repo obok BDOS AI i kopiuj z niego
 
-Jesli chcesz trzymac skille w osobnym repo i aktualizowac je niezaleznie:
+Jeśli chcesz trzymać skille w osobnym repo i aktualizować je niezależnie:
 
 ```bash
 git clone https://github.com/TWOJ-LOGIN/BDOS-skills.git
 ```
 
-Kopie BDOS AI mozna nabyc na https://bdos.ai/
+Kopię BDOS AI można nabyć na https://bdos.ai/
 
-Nastepnie kopiuj wybrane skille z `BDOS-skills/my/skills/` do `BDOS-AI/my/skills/` i uruchamiaj:
+Następnie kopiuj wybrane skille z `BDOS-skills/my/skills/` do `BDOS-AI/my/skills/` i uruchamiaj:
 
 ```bash
 cd BDOS-AI
@@ -104,24 +117,24 @@ bdos update --regenerate
 
 ## Aktywacja po instalacji
 
-Samo skopiowanie plikow nie wystarczy. Po dodaniu skilli do BDOS uruchom w repo projektu:
+Samo skopiowanie plików nie wystarczy. Po dodaniu skilli do BDOS uruchom w repo projektu:
 
 ```bash
 bdos update --regenerate
 ```
 
-Potem uzyj odpowiedniego skilla:
+Potem użyj odpowiedniego skilla:
 
 - dla Gemini CLI: uruchom `gemini-setup`
 - dla Codexa: uruchom `codex-setup`
 
-Po uruchomieniu `codex-setup` skille BDOS zostana zsynchronizowane do `.agents/skills/<name>/SKILL.md` w katalogu projektu.
+Po uruchomieniu `codex-setup` skille BDOS zostaną zsynchronizowane do `.agents/skills/<name>/SKILL.md` w katalogu projektu.
 
-## Jak uzywac
+## Jak używać
 
-Po instalacji mozesz poprosic agenta o konfiguracje odpowiedniego srodowiska.
+Po instalacji możesz poprosić agenta o konfigurację odpowiedniego środowiska.
 
-Przyklady:
+Przykłady:
 
 ```text
 Uruchom gemini-setup
@@ -131,7 +144,7 @@ Uruchom gemini-setup
 Uruchom codex-setup
 ```
 
-Jesli agent obsluguje jawne wywolanie przez sciezke, mozesz wskazac plik bezposrednio:
+Jeśli agent obsługuje jawne wywołanie przez ścieżkę, możesz wskazać plik bezpośrednio:
 
 ```text
 @my/skills/gemini-setup/SKILL.md
@@ -143,14 +156,14 @@ Jesli agent obsluguje jawne wywolanie przez sciezke, mozesz wskazac plik bezposr
 
 ## Aktualizacja
 
-Gdy zmienisz zawartosc ktoregos skilla:
+Gdy zmienisz zawartość któregoś skilla:
 
-1. Podmien pliki w `BDOS-AI/my/skills/`
+1. Podmień pliki w `BDOS-AI/my/skills/`
 2. Uruchom `bdos update --regenerate`
-3. Ponownie uruchom `gemini-setup` albo `codex-setup`, zaleznie od klienta
+3. Ponownie uruchom `gemini-setup` albo `codex-setup`, zależnie od klienta
 
 ## Uwagi
 
-- Repo nie zawiera calego BDOS AI, tylko dodatkowe skille
-- Skille sa przeznaczone do wgrania do `my/skills/` w istniejacej instancji BDOS
-- `gemini-setup` i `codex-setup` sa skillami konfiguracyjnymi, a nie skillami do analizy kampanii
+- Repo nie zawiera całego BDOS AI, tylko dodatkowe skille
+- Skille są przeznaczone do wgrania do `my/skills/` w istniejącej instancji BDOS
+- `gemini-setup` i `codex-setup` są skillami konfiguracyjnymi, a nie skillami do analizy kampanii
