@@ -36,11 +36,24 @@ Uzywaj go, gdy chcesz, zeby Gemini CLI widzial skille BDOS natywnie przez `/skil
 
 Skill dla Codexa. Jego celem jest:
 
+- skopiowanie lub odswiezenie skilli BDOS w `.agents/skills/`
 - wygenerowanie lub odswiezenie `AGENTS.md`
 - utworzenie `my/AGENTS.md`
-- dopiecie do `AGENTS.md` listy dostepnych skilli BDOS i zasad ich uzycia
 
 Uzywaj go, gdy chcesz skonfigurowac projekt BDOS pod Codexa.
+
+Po uruchomieniu:
+
+- skille z `bdos/data/claude/skills/` oraz `my/skills/` sa synchronizowane do `.agents/skills/<name>/SKILL.md`
+- Codex moze wykrywac te skille natywnie z katalogu projektu, analogicznie do `.gemini/skills/`
+- `AGENTS.md` pozostaje plikiem instrukcji projektowych, ale nie musi juz zawierac recznie utrzymywanej listy skilli
+
+Uruchom `codex-setup` ponownie, gdy:
+
+- dodasz nowy skill do `my/skills/`
+- zaktualizujesz BDOS i zmienia sie `bdos/data/claude/skills/`
+- zmienisz `my/AGENTS.md`
+- chcesz odswiezyc `AGENTS.md` po zmianach w `CLAUDE.md`
 
 ## Instalacja
 
@@ -101,6 +114,8 @@ Potem uzyj odpowiedniego skilla:
 
 - dla Gemini CLI: uruchom `gemini-setup`
 - dla Codexa: uruchom `codex-setup`
+
+Po uruchomieniu `codex-setup` skille BDOS zostana zsynchronizowane do `.agents/skills/<name>/SKILL.md` w katalogu projektu.
 
 ## Jak uzywac
 
