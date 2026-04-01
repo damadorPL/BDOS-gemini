@@ -4,9 +4,14 @@ Zestaw dodatkowych skilli do projektu BDOS AI.
 
 Repo zawiera obecnie:
 
+**Skille (`SKILL.md`)**
 - `my/skills/gemini-setup/SKILL.md` - przygotowuje konfigurację Gemini CLI dla BDOS
 - `my/skills/codex-setup/SKILL.md` - przygotowuje konfigurację Codexa dla BDOS
+
+**Dodatkowe skrypty**
 - `my/exclude_content_labels.py` - narzędzie do wykluczania śmieciowych content labels w Google Ads
+
+`exclude_content_labels.py` jest skryptem Pythona w katalogu `my/` (nie jest skillem `SKILL.md`).
 
 Te skille nie są samodzielną aplikacją. To gotowe pliki `SKILL.md`, które kopiujesz do swojego projektu BDOS AI.
 
@@ -14,13 +19,12 @@ Te skille nie są samodzielną aplikacją. To gotowe pliki `SKILL.md`, które ko
 
 ```text
 my/
-  exclude_content_labels.py
+  exclude_content_labels.py            # skrypt do wykluczeń content labels w Google Ads
   skills/
-    gemini-setup/
-      SKILL.md
     codex-setup/
       SKILL.md
-    exclude_content_labels.py
+    gemini-setup/
+      SKILL.md
 ```
 
 ## Co robi każdy skill
