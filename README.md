@@ -6,6 +6,7 @@ Repo zawiera obecnie:
 
 - `my/skills/gemini-setup/SKILL.md` - przygotowuje konfigurację Gemini CLI dla BDOS
 - `my/skills/codex-setup/SKILL.md` - przygotowuje konfigurację Codexa dla BDOS
+- `my/exclude_content_labels.py` - narzędzie do wykluczania śmieciowych content labels w Google Ads
 
 Te skille nie są samodzielną aplikacją. To gotowe pliki `SKILL.md`, które kopiujesz do swojego projektu BDOS AI.
 
@@ -13,11 +14,13 @@ Te skille nie są samodzielną aplikacją. To gotowe pliki `SKILL.md`, które ko
 
 ```text
 my/
+  exclude_content_labels.py
   skills/
     gemini-setup/
       SKILL.md
     codex-setup/
       SKILL.md
+    exclude_content_labels.py
 ```
 
 ## Co robi każdy skill
@@ -67,6 +70,32 @@ Uruchom `codex-setup` ponownie, gdy:
 - zaktualizujesz BDOS i zmienia się `bdos/data/claude/skills/`
 - zmienisz `my/AGENTS.md`
 - chcesz odświeżyć `AGENTS.md` po zmianach w `CLAUDE.md`
+
+### `exclude_content_labels`
+
+Narzędzie do automatycznego wykluczania niechcianych kategorii treści (content labels) w Google Ads na poziomie konta.
+
+Wykluczone kategorie:
+- **JUVENILE (6)** - treści dla dzieci/młodzieży
+- **BRAND_SUITABILITY_GAMES_FIGHTING (19)** - gry walki
+- **BRAND_SUITABILITY_GAMES_MATURE (20)** - gry mature
+
+Wykluczenia są stosowane na poziomie `CustomerNegativeCriterion` i dotyczą wszystkich kampanii w koncie (Display, Demand Gen, YouTube).
+
+**Użycie:**
+
+```bash
+# Podgląd bez zmian (domyślnie dry-run)
+.venv/Scripts/python.exe my/exclude_content_labels.py --dry-run
+
+# Zastosuj wykluczenia na wszystkich kontach
+.venv/Scripts/python.exe my/exclude_content_labels.py
+
+# Zastosuj wykluczenia tylko na jednym koncie
+.venv/Scripts/python.exe my/exclude_content_labels.py --alias moje-konto
+```
+
+Skrypt automatycznie pomija konta, które już mają skonfigurowane te wykluczenia.
 
 ## Instalacja
 
